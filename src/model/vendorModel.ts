@@ -5,7 +5,7 @@ import { FoodInstance } from "./foodModel";
 export interface VendorAttributes {
   id: string;
   name: string;
-  ownerName: string;
+  restaurantName: string;
   pincode:string;
   phone: string;
   address: string;
@@ -15,6 +15,7 @@ export interface VendorAttributes {
   serviceAvailable:boolean;
   rating:number;
   role:string
+  coverImage:string
 }
 
 export class VendorInstance extends Model<VendorAttributes> {}
@@ -54,7 +55,7 @@ VendorInstance.init({
         type: DataTypes.STRING,
         allowNull: true,
       },
-      ownerName: {
+      restaurantName: {
         type: DataTypes.STRING,
         allowNull: true,
       },
@@ -95,9 +96,13 @@ VendorInstance.init({
       type:DataTypes.STRING,
       allowNull:true
   },
+  coverImage:{
+    type:DataTypes.STRING,
+    allowNull:true
+
     
 },
-
+},
 {
     sequelize:db,
     tableName:'vendor'
@@ -106,4 +111,4 @@ VendorInstance.init({
 
 VendorInstance.hasMany(FoodInstance, {foreignKey:'vendorId', as:'food'});
 
-FoodInstance.belongsTo(VendorInstance, {foreignKey:'vendorId', as:'vendor' } );
+FoodInstance.belongsTo(VendorInstance, {foreignKey:'vendorId', as:'vendor' });

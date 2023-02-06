@@ -13,6 +13,9 @@ import indexRouter from "./routes/index"
 import adminRouter from './routes/admin'
 import vendorRouter from './routes/vendor'
 import {db} from './config/index'
+import dotenv from 'dotenv'
+dotenv.config();
+import cors from 'cors'
 
 //sequelize connection
 //killall node (to kill all servers running)
@@ -40,9 +43,11 @@ const app = express();
 // app.use(express.json());
 // app.use(logger('dev'));
 // app.use(cookieParser());
+app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use(logger('dev'));
 app.use(cookieParser());
+app.use(cors())
 
 // app.use('/users', userRouter);
 // app.use('/', indexRouter);

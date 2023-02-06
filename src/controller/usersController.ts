@@ -88,11 +88,12 @@ export const Register = async (req: Request, res: Response) => {
         lng: 0,
         lat: 0,
         verified: false,
-        role: "user"
+        role: "user",
+        coverImage: ""
       });
 
       //send OTP to user
-      await onRequestOTP(otp, phone);
+      // await onRequestOTP(otp, phone);
 
       //send email to user
       const html = emailHtml(otp);
@@ -209,9 +210,11 @@ export const Login = async (req: Request, res: Response) => {
           role: User.role
         });
       }
+      return res.status(400).json({ Error: "User not verified" });
+
     }
 
-    return res.status(400).json({ Error: "wrong username/email or password or not verified" });
+    return res.status(400).json({ Error: "wrong email or password or not verified" });
   } catch (err) {
     res
       .status(500)

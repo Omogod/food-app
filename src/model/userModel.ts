@@ -16,6 +16,7 @@ export interface UserAttributes {
   lat: number;
   verified: boolean;
   role: string
+  coverImage: string
 }
 
 export class UserInstance extends Model<UserAttributes> {}
@@ -124,8 +125,12 @@ UserInstance.init(
     role: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
+    coverImage: {
+      type: DataTypes.STRING,
+      allowNull: true  
   },
+},
   {
     sequelize: db,
     tableName: "user",

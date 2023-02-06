@@ -36,7 +36,7 @@ export const vendorSchema = Joi.object().keys({
   phone: Joi.string().required(),
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
    name: Joi.string().required(),
-   ownerName: Joi.string().required(),
+   restaurantName: Joi.string().required(),
    address: Joi.string().required(),
    pincode: Joi.string().required(),
   
@@ -76,6 +76,13 @@ export const vendorSchema = Joi.object().keys({
         lastName: Joi.string().required(),
         phone: Joi.string().required(),
         address: Joi.string().required(),
+    })
+
+    export const updateVendorSchema = Joi.object().keys({
+        name: Joi.string(),
+        coverImage: Joi.string(),
+        phone: Joi.string(),
+        address: Joi.string()
     })
 
 

@@ -57,6 +57,7 @@ export const SuperAdminRegister = async (req: JwtPayload, res: Response) => {
         lat: 0,
         verified: true,
         role: "superadmin", //admin
+        coverImage: ""
       });
       //send OTP to USer phone number
       //await onRequestOTP(otp, phone)
@@ -139,6 +140,7 @@ export const AdminRegister = async (req: JwtPayload, res: Response) => {
           lat: 0,
           verified: true,
           role: "admin", //admin
+          coverImage: ""
         });
         //send OTP to USer phone number
         //await onRequestOTP(otp, phone)
@@ -178,7 +180,7 @@ export const AdminRegister = async (req: JwtPayload, res: Response) => {
 export const createVendor = async (req: JwtPayload, res: Response) => {
   try {
     const id = req.user.id;
-    const { name, ownerName, pincode, phone, address, email, password } =
+    const { name, restaurantName, pincode, phone, address, email, password } =
       req.body;
     const uuidvendor = uuidv4();
     const validateResult = vendorSchema.validate(req.body, option);
@@ -206,7 +208,7 @@ export const createVendor = async (req: JwtPayload, res: Response) => {
         const createVendor = await VendorInstance.create({
           id: uuidvendor,
           name,
-          ownerName,
+          restaurantName,
           pincode,
           phone,
           address,
@@ -216,6 +218,7 @@ export const createVendor = async (req: JwtPayload, res: Response) => {
           role: "vendor",
           serviceAvailable: false,
           rating: 0,
+          coverImage: "",
         });
 
         return res.status(201).json({
